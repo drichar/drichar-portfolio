@@ -1,0 +1,8 @@
+{
+  "body": "{\"name\":\"test project\", \"description\":\"test description\", \"image\":\"test.jpg\", \"url\":\"https://www.google.com\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "USER-SUB-1234"
+    }
+  }
+}
