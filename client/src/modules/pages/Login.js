@@ -6,25 +6,30 @@ import './Login.css'
 function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
-  const validateForm = () => {
-    return email.length > 0 && password.length > 0
+  const isSubmitDisabled = () => {
+    return (!email.length > 0 && !password.length > 0) || isLoading
   }
 
-  const handleSubmit = async (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault()
+
+    setIsLoading(true)
 
     try {
       await Auth.signIn(email, password)
       props.userHasAuthenticated(true)
+      props.history.push('/')
     } catch (err) {
       alert(err.message)
+      setIsLoading(false)
     }
   }
 
   return (
     <div className="Login">
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleLogin}>
         <Form.Group controlId="email">
           <Form.Label>Email</Form.Label>
           <Form.Control
@@ -48,9 +53,9 @@ function Login(props) {
           size="lg"
           block
           type="submit"
-          disabled={!validateForm()}
+          disabled={isSubmitDisabled()}
         >
-          Login
+          {isLoading ? 'Logging in…' : 'Login'}
         </Button>
       </Form>
     </div>

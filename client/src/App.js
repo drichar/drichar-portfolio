@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Auth } from 'aws-amplify'
 import { Navbar, Nav } from 'react-bootstrap'
 import Routes from './Routes'
 import './App.css'
 
-function App() {
+function App(props) {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [isAuthenticating, setIsAuthenticating] = useState(true)
 
@@ -39,6 +40,8 @@ function App() {
     await Auth.signOut()
     
     userHasAuthenticated(false)
+
+    props.history.push('/login');
   }
 
   return (
@@ -66,4 +69,4 @@ function App() {
   )
 }
 
-export default App
+export default withRouter(App)
