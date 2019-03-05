@@ -1,13 +1,14 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Home from './components/Home'
-import Login from './components/Login'
-import NotFound from './components/NotFound'
+import AppliedRoute from './modules/components/AppliedRoute'
+import Home from './modules/pages/Home'
+import Login from './modules/pages/Login'
+import NotFound from './modules/pages/NotFound'
 
-export default () =>
+export default ({ childProps }) =>
   <Switch>
-    <Route path="/" exact component={Home} />
-    <Route path="/login" exact component={Login} />
+    <AppliedRoute path="/" exact component={Home} props={childProps} />
+    <AppliedRoute path="/login" exact component={Login} props={childProps} />
     { /* Finally, catch all unmatched routes */}
     <Route component={NotFound} />
   </Switch>

@@ -1,17 +1,25 @@
 import React, { useState } from 'react'
+import { Auth } from 'aws-amplify'
 import { Button, Form } from 'react-bootstrap'
 import './Login.css'
 
-function Login() {
+function Login(props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const validateForm = () => {
-    return email.length > 0 && password.length > 0;
+    return email.length > 0 && password.length > 0
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+
+    try {
+      await Auth.signIn(email, password)
+      props.userHasAuthenticated(true)
+    } catch (err) {
+      alert(err.message)
+    }
   }
 
   return (
