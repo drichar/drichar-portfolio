@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import Container from 'react-bootstrap/Container'
-import Jumbotron from 'react-bootstrap/Jumbotron'
+import { Jumbotron, Container } from 'react-bootstrap'
 import './Home.css'
 
 export default class Home extends Component {
