@@ -1,11 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { LinkContainer } from 'react-router-bootstrap'
+import { Auth } from 'aws-amplify'
 import { Navbar, Nav } from 'react-bootstrap'
 import Routes from './Routes'
 import './App.css'
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticating, setIsAuthenticating] = useState(true)
+
+  const authenticate = async () => {
+    try {
+      await Auth.currentSession()
+      userHasAuthenticated(true)
+    } catch (err) {
+      if (err !== 'No current user') {
+        alert(err)
+      }
+    }
+
+    setIsAuthenticating(false)
+  }
+
+  useEffect(() => {
+    authenticate()
+  })
 
   const userHasAuthenticated = (authenticated) => {
     setIsAuthenticated(authenticated)
@@ -16,11 +35,14 @@ function App() {
     userHasAuthenticated
   }
 
-  const handleLogout = (event) => {
+  const handleLogout = async (event) => {
+    await Auth.signOut()
+    
     userHasAuthenticated(false)
   }
 
   return (
+    !isAuthenticating &&
     <div>
       <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
         <LinkContainer to="/">
@@ -38,6 +60,7 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
+
       <Routes childProps={childProps} />
     </div>
   )
