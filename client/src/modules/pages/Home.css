@@ -1,0 +1,12 @@
+.Home {
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.Home .home-title {
+  margin-bottom: 1rem;
+}
+
+.Home .projects button {
+  margin-bottom: 1rem;
+}

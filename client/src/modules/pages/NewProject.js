@@ -50,7 +50,7 @@ function NewProject(props) {
 
   return (
     <div className="NewProject">
-      <h2 className="new-project-title">Add a Project</h2>
+      <h1 className="new-project-title">New Project</h1>
       <Form className="new-project-form" onSubmit={handleSubmit}>
         <Form.Group controlId="name">
           <Form.Label>Name</Form.Label>
@@ -90,7 +90,7 @@ function NewProject(props) {
           type="submit"
           disabled={isSubmitDisabled()}
         >
-          {isLoading ? 'Creating…' : 'Create'}
+          {isLoading ? 'Creating…' : 'Create Project'}
         </Button>
       </Form>
     </div>
