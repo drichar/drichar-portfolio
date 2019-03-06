@@ -1,0 +1,23 @@
+.NewProject {
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  max-width: 30rem;
+}
+
+.NewProject .new-project-title {
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+
+.NewProject .new-project-form {
+  margin-bottom: 1rem;
+}
+
+.NewProject .new-project-form .form-group:nth-last-child(2) {
+  margin-bottom: 2rem;
+}
+
+.NewProject .new-project-textarea {
+  height: 10rem;
+  resize: none;
+}

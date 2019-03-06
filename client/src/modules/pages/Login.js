@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Auth } from 'aws-amplify'
 import { Button, Form } from 'react-bootstrap'
+import { Auth } from 'aws-amplify'
 import './Login.css'
 
 function Login(props) {
