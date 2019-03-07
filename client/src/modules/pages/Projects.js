@@ -90,6 +90,10 @@ function Projects(props) {
     }
   }
 
+  const deleteProject = () => {
+    return API.del('projects', `/projects/${props.match.params.id}`)
+  }
+
   const handleDelete = async (event) => {
     event.preventDefault()
 
@@ -102,6 +106,14 @@ function Projects(props) {
     }
 
     setIsDeleting(true)
+
+    try {
+      await deleteProject()
+      props.history.push('/')
+    } catch (err) {
+      alert(err)
+      setIsDeleting(false)
+    }
   }
 
   return (
