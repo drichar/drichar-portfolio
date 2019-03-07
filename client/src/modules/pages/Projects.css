@@ -1,0 +1,16 @@
+.Projects {
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  max-width: 30rem;
+}
+
+.Projects .projects-title {
+  margin-bottom: 1rem;
+}
+
+.Projects .save-delete-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 0.5rem;
+  padding-top: 1rem;
+}
