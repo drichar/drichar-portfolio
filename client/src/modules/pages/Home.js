@@ -46,8 +46,10 @@ function Home(props) {
       <div className="lander">
         <Jumbotron fluid>
           <Container>
-            <h1>Doug's Portfolio</h1>
-            <p>This is an app to manage portfolio items.</p>
+            <h1>Manage Portfolio</h1>
+            <LinkContainer to="/login">
+              <Button variant="primary" size="lg" as="button">Login</Button>
+            </LinkContainer>
           </Container>
         </Jumbotron>
       </div>

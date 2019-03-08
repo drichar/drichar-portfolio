@@ -1,9 +1,9 @@
-.Home {
+.Home .projects {
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-.Home .home-title {
+.Home .projects .home-title {
   margin-bottom: 1rem;
 }
 
