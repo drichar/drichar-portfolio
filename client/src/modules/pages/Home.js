@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Jumbotron, Container, ListGroup, Button } from 'react-bootstrap'
+import Spinner from '../components/Spinner'
 import { LinkContainer } from 'react-router-bootstrap'
 import { API } from 'aws-amplify'
 import './Home.css'
@@ -57,6 +58,8 @@ function Home(props) {
   }
 
   const renderProjects = () => {
+    const spinner = <Spinner size="lg" color="secondary" margin="5" centered />;
+    
     return (
       <div className="projects">
         <Container>
@@ -65,7 +68,7 @@ function Home(props) {
             <Button variant="primary" size="lg" as="button">Create a new project</Button>
           </LinkContainer>
           <ListGroup>
-            {!isLoading && renderProjectsList(projects)}
+            {isLoading ? spinner : renderProjectsList(projects)}
           </ListGroup>
         </Container>
       </div>
