@@ -1,0 +1,14 @@
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 2rem 0;
+}
+
+.page-actions .btn {
+  flex: 0 0 auto;
+  min-width: 15rem;
+}
+
+.page-actions .btn:not(:last-child) {
+  margin-right: 1rem;
+}

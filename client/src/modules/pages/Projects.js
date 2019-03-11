@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Form, Button, Image } from 'react-bootstrap'
+import { Container, Form, Button, Image } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import Spinner from '../components/Spinner'
 import { API, Storage } from 'aws-amplify'
 import { s3Upload } from '../../libs/awsLib';
@@ -119,76 +120,86 @@ function Projects(props) {
 
   return (
     <div className="Projects">
-      <h1 className="projects-title">Edit Project</h1>
-      {!project 
-        ? <Spinner size="lg" color="secondary" margin="5" centered />
-        : <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="name">
-              <Form.Label>Name</Form.Label>
-              <Form.Control
-                type="text"
-                value={name}
-                onChange={event => setName(event.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId="description">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                className="project-textarea"
-                value={description}
-                onChange={event => setDescription(event.target.value)}
-              />
-            </Form.Group>
-            <Form.Group controlId="url">
-              <Form.Label>URL <small>Optional</small></Form.Label>
-              <Form.Control
-                type="text"
-                value={url}
-                onChange={event => setUrl(event.target.value)}
-              />
-            </Form.Group>
-            {project.image && 
-              <Form.Group>
-                <Form.Label>Image</Form.Label>
-                <p>
-                  <a target="_blank" rel="noopener noreferrer" href={imageUrl}>
-                    <Image src={imageUrl} fluid alt={formatFilename(project.image)} />
-                  </a>
-                </p>
+      <Container>
+        <h1 className="projects-title">
+          Edit Project
+          <button 
+            className="close" 
+            disabled={isDeleteBtnDisabled()}
+            onClick={handleDelete}
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </h1>
+        {!project 
+          ? <Spinner size="lg" color="secondary" margin="5" centered />
+          : <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  value={name}
+                  onChange={event => setName(event.target.value)}
+                />
               </Form.Group>
-            }
-            <Form.Group controlId="file">
-              {!project.image &&
-                <Form.Label>Image</Form.Label>
+              <Form.Group controlId="description">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  className="projects-description"
+                  value={description}
+                  onChange={event => setDescription(event.target.value)}
+                />
+              </Form.Group>
+              <Form.Group controlId="url">
+                <Form.Label>URL <small>Optional</small></Form.Label>
+                <Form.Control
+                  type="text"
+                  value={url}
+                  onChange={event => setUrl(event.target.value)}
+                />
+              </Form.Group>
+              {project.image && 
+                <Form.Group>
+                  <Form.Label>Image</Form.Label>
+                  <p>
+                    <a target="_blank" rel="noopener noreferrer" href={imageUrl}>
+                      <Image src={imageUrl} fluid alt={formatFilename(project.image)} />
+                    </a>
+                  </p>
+                </Form.Group>
               }
-              <Form.Control
-                type="file"
-                onChange={event => setFile(event.target.files[0])}
-              />
-            </Form.Group>
+              <Form.Group controlId="file">
+                {!project.image &&
+                  <Form.Label>Image</Form.Label>
+                }
+                <Form.Control
+                  type="file"
+                  onChange={event => setFile(event.target.files[0])}
+                />
+              </Form.Group>
 
-            <div className="save-delete-grid">
-              <Button
-                variant="primary"
-                size="lg"
-                type="submit"
-                disabled={isSaveBtnDisabled()}
-              >
-                {isLoading ? 'Saving…' : 'Save'}
-              </Button>
-              <Button
-                variant="danger"
-                size="lg"
-                disabled={isDeleteBtnDisabled()}
-                onClick={handleDelete}
-              >
-                {isDeleting ? 'Deleting…' : 'Delete'}
-              </Button>
-            </div>
-            
-          </Form>
-      }
+              <div className="page-actions">
+                <LinkContainer to="/">
+                  <Button
+                    size="lg"
+                    variant="light"
+                  >
+                    Cancel
+                </Button>
+                </LinkContainer>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  type="submit"
+                  disabled={isSaveBtnDisabled()}
+                >
+                  {isLoading ? 'Saving…' : 'Save Project'}
+                </Button>
+              </div>
+            </Form>
+        }
+      </Container>
     </div>
   )
 }

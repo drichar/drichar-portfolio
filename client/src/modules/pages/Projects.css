@@ -1,11 +1,26 @@
 .Projects {
   margin: 0 auto;
   padding: 2rem 1rem;
-  max-width: 30rem;
 }
 
 .Projects .projects-title {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 1rem;
+}
+
+.Projects .projects-title .close {
+  font-size: 3rem;
+}
+
+.Projects .projects-description {
+  resize: none;
+  height: 10rem;
+}
+
+.Projects .alert.alert-danger {
+  display: flex;
+  justify-content: center;
 }
 
 .Projects .save-delete-grid {
