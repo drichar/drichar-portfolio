@@ -47,7 +47,7 @@ function App(props) {
   return (
     !isAuthenticating &&
     <div>
-      <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <LinkContainer to="/">
           <Navbar.Brand>drichar.dev</Navbar.Brand>
         </LinkContainer>
